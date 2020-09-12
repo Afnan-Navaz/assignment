@@ -1,0 +1,21 @@
+.floating{
+    position: fixed;
+    background-color: whitesmoke;
+    border: solid 1px grey;
+    width: 75%;
+    height: 80%;
+    left: 50%;
+    margin-left: -37%;
+    top: 10%;
+    z-index: 10;
+    .close{
+        position: relative;
+        font-size: 35px;
+        right: -4%;
+        color: black;
+    }
+    .area {
+        height: 45vh;
+        resize: none;
+    }
+}

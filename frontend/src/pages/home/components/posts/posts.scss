@@ -1,0 +1,43 @@
+
+.main-cont{
+    margin-top: 30vh;
+}
+.avt{
+    color: white;
+}
+.title{
+    text-decoration: underline;
+}
+.date{
+    color: #107cfa;
+    font-size: small;
+}
+.bar{
+    height: 10px;
+    width: 200px;
+    border: solid 1px #42a746;
+    background-color: #dc3d45;
+    div{
+        background-color: #42a746;
+        height: 100%;
+    }
+}
+.dar2d2{
+    transition: all 1s;
+}
+.show{
+    font-size: 85%;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.abox{
+    width: 100%;
+    text-align: right;
+    padding-right: 3%;
+}
+.thumb{
+    cursor: pointer;
+}
+.thumb:hover{
+    color: #107cfa;
+}
