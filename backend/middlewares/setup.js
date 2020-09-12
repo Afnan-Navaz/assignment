@@ -26,7 +26,7 @@ const setup = (app) => {
         secret: "secrect",
         cookie: { secure: false }
     }));
-    app.use(morgan('dev'));
+    // app.use(morgan('dev'));
 }
 
 module.exports = setup;

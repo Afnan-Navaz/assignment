@@ -19,7 +19,10 @@ function Posts({update, setUpdate}) {
         <div className="main-cont mx-5">
             {posts.map(x => {
                 const date = new Date(x.createdAt);
-                const pcent = (x.like/(x.like + x.dislike))*100;
+                let pcent = 0;
+                if((x.like + x.dislike) !== 0){
+                    pcent = (x.like/(x.like + x.dislike))*100;
+                }
                 return (
                 <div key={x._id} className="row my-5">
                     <div className="col-9">

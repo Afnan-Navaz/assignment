@@ -31,10 +31,10 @@ function LoginPage (props) {
       .catch((error) => {
         console.error('Error:', error);
       });
-      props.history.push('/');
       setUsername('');
       setEmail('');
       setPassword('');
+      props.history.push('/');
       window.location.reload();
     }
 
