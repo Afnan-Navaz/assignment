@@ -1,10 +1,10 @@
-# Assignment
+# shareText
 MERN web app to share text based posts
-## Requirements
+### Requirements
 * Node.js  
 * Yarn
 * mongoDB
-## Local Setup Instruction
+### Local Setup Instruction
 1. `git clone https://github.com/Afnan-Navaz/assignment.git`
 2. `cd assignment`
 3. **Back-End**
