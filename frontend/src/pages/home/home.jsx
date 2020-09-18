@@ -26,9 +26,10 @@ function Home(){
         .then(dat => {
             cont.setUser(dat.username);
             cont.setEmail(dat.email);
+            localStorage.setItem('userid', dat._id);
         })
         .catch(e => console.log(e));
-    }, [cont])
+    })
     return(
         <div className="container-fluid">
             {float && <Floating setUpdate={setUpdate} toggle={toggleFloat} />}

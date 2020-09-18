@@ -3,10 +3,16 @@ const morgan = require('morgan');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const {MONGO_URL, ORIGIN} = require('../config');
+
+const sessionsetup = session({
+    saveUninitialized: true,
+    resave: false,
+    secret: "secrect",
+    cookie: { secure: false }
+});
 
 const setup = (app) => {
-    mongoose.connect(MONGO_URL, { 
+    mongoose.connect(process.env.MONGO_URL, { 
         useUnifiedTopology: true,
         useNewUrlParser: true,
         useFindAndModify:true,
@@ -15,18 +21,13 @@ const setup = (app) => {
     .then(() => console.log('connected to mongodb'))
     .catch(() => console.log('cannot connect to mongodb'));
     app.use(cors({
-        origin: ORIGIN,
+        origin: process.env.ORIGIN,
         credentials: true,
       }));
     app.use(express.json());
     app.use(express.urlencoded({extended: true}));
-    app.use(session({
-        saveUninitialized: true,
-        resave: false,
-        secret: "secrect",
-        cookie: { secure: false }
-    }));
-    // app.use(morgan('dev'));
+    app.use(sessionsetup);
+    app.use(morgan('dev'));
 }
 
-module.exports = setup;
+module.exports = {setup, sessionsetup};

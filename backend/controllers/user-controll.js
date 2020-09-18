@@ -1,5 +1,6 @@
 const User = require('../models/user-model');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const sign = async (req, res) => {
     try{
@@ -10,6 +11,7 @@ const sign = async (req, res) => {
                 password: password
             });
         req.session.userid = user._id;
+        // const userID = jwt.sign(user._id, process.env.JWT);
         res.send({
             username: user.username,
             email: user.email,
@@ -26,6 +28,7 @@ const login = async (req, res) => {
         const pword = await bcrypt.compare(req.body.password, user.password);
         if(pword){
             req.session.userid = user._id;
+            // const userID = jwt.sign(user._id, process.env.JWT);
             res.send({
                 username: user.username,
                 email: user.email,

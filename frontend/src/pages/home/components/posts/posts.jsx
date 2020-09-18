@@ -2,17 +2,22 @@ import React, {useEffect, useState} from 'react';
 import UserAvatar from 'react-user-avatar';
 import Pre from './pre';
 import Like from './like';
-import {get} from '../../../../config/http';
+// import {get} from '../../../../config/http';
+import {socket} from '../../../../context/rootContext'
 import './posts.scss';
 
 function Posts({update, setUpdate}) {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
-        get('post/all')
-        .then(data => {
-            setPosts(data);
-        })
-        .catch(e => console.log(e));
+        // get('post/all')
+        // .then(data => {
+        //     setPosts(data);
+        //     console.log(data);
+        // })
+        // .catch(e => console.log(e));
+        // const userid = JSON.parse(localStorage.getItem('userid'));
+        socket.on('allPost', (data) => setPosts(data));
+        socket.emit('allPost');
     }, [update]);
 
     return(
