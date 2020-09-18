@@ -21,10 +21,13 @@ const setupIO = (io) => {
                     }
                     return {...x._doc, like: x._doc.like.length, dislike: x._doc.dislike.length, islike: likestate};
                 });
-                io.emit('allPost', posts);
+                socket.emit('allPost', posts);
             }catch(e){
                 console.log(e);
             }
+        });
+        socket.on('update', () => {
+            io.emit('update');
         })
         socket.on('disconnect', () => console.log('client disconnected'));
     });

@@ -3,8 +3,9 @@ import './floating.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import {post} from '../../../../config/http';
+import {socket} from '../../../../context/rootContext'
 
-function Floating({toggle, setUpdate}) {
+function Floating({toggle}) {
     const [title, setTitle] = useState();
     const [body, setBody] = useState();
 
@@ -16,7 +17,8 @@ function Floating({toggle, setUpdate}) {
         }
         post('post/new', data)
         .then(_data => {
-          setUpdate(x => !x);
+          // setUpdate(x => !x);
+          socket.emit('update');
         })
         .catch((error) => {
           console.error('Error:', error);

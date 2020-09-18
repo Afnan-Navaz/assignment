@@ -24,8 +24,8 @@ function LoginPage (props) {
       }
       post(`user/${issign ? 'sign' : 'login'}`, data)
       .then(data => {
-        // cont.setUser(data.username);
-        // cont.setEmail(data.email);
+        cont.setUser(data.username);
+        cont.setEmail(data.email);
         // cont.setId(data.id);
         // localStorage.setItem('userid', JSON.stringify(data._id));
         console.log('in');
