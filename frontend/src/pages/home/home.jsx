@@ -13,7 +13,6 @@ function Home(){
 
     const cont = useContext(Context);
     const [float, setFloat] = useState(false);
-    const [update, setUpdate] = useState(true);
     const toggleFloat = () => {
         if(cont.username){
             setFloat(!float);
@@ -22,16 +21,19 @@ function Home(){
         }
     }
     useEffect(() => {
-        get('user/cred')
+        if(!cont.username){
+            get('user/cred')
         .then(dat => {
             cont.setUser(dat.username);
             cont.setEmail(dat.email);
+            localStorage.setItem('userid', dat._id);
         })
         .catch(e => console.log(e));
-    }, [cont])
+        }
+    }, [cont]);
     return(
         <div className="container-fluid">
-            {float && <Floating setUpdate={setUpdate} toggle={toggleFloat} />}
+            {float && <Floating toggle={toggleFloat} />}
             <div className="row tinp">
                 <div className="container col-10">
                     <input onClick={toggleFloat} type="text" placeholder="what do yo want to tel the world?" className="dummy w-75 ml-5" />
@@ -45,7 +47,7 @@ function Home(){
                     </div>
                 </div>
             </div>
-            <Posts update={update} setUpdate={setUpdate} />
+            <Posts />
         </div>
     )
 }

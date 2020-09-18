@@ -2,18 +2,16 @@ import React, {useEffect, useState} from 'react';
 import UserAvatar from 'react-user-avatar';
 import Pre from './pre';
 import Like from './like';
-import {get} from '../../../../config/http';
+import {socket} from '../../../../context/rootContext'
 import './posts.scss';
 
-function Posts({update, setUpdate}) {
+function Posts() {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
-        get('post/all')
-        .then(data => {
-            setPosts(data);
-        })
-        .catch(e => console.log(e));
-    }, [update]);
+        socket.on('allPost', (data) => setPosts(data));
+        socket.on('update', () => socket.emit('allPost'));
+        socket.emit('update');
+    }, []);
 
     return(
         <div className="main-cont mx-5">
@@ -32,7 +30,7 @@ function Posts({update, setUpdate}) {
                             <p className="date col-6">{date.toDateString()+ " " +date.toLocaleTimeString()}</p>
                             <div className="bar rounded mt-2"><div className="dar2d2" style={{width: `${pcent}%`}}></div></div>
                             <div className="col-3 ml-4">
-                                <Like islike={x.islike} postid={x._id} setUpdate={setUpdate} />
+                                <Like islike={x.islike} postid={x._id} />
                             </div>
                         </div>
                     </div>

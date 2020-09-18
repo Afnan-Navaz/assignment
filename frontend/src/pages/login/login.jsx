@@ -27,6 +27,8 @@ function LoginPage (props) {
         cont.setUser(data.username);
         cont.setEmail(data.email);
         // cont.setId(data.id);
+        // localStorage.setItem('userid', JSON.stringify(data._id));
+        console.log('in');
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -34,8 +36,9 @@ function LoginPage (props) {
       setUsername('');
       setEmail('');
       setPassword('');
-      props.history.push('/');
-      window.location.reload();
+      // props.history.push('/');
+      window.location.href = '/';
+      // window.location.reload();
     }
 
     return(

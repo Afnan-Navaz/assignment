@@ -3,8 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 import {Context} from '../../../../context/rootContext';
 import {post} from '../../../../config/http';
+import {socket} from '../../../../context/rootContext'
 
-function Like({postid, setUpdate, islike}){
+function Like({postid, islike}){
     const [like, setLike] = useState(false)
     const [dislike, setDislike] = useState(false)
     useEffect(() => {
@@ -28,7 +29,8 @@ function Like({postid, setUpdate, islike}){
         }
         post('post/like', dat)
         .then(_data => {
-        setUpdate(x => !x);
+        // setUpdate(x => !x);
+        socket.emit('update');
         })
         .catch((error) => {
         console.error('Error:', error);
